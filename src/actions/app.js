@@ -8,8 +8,10 @@ const GET_LOCATION_FAILURE = 'GET_LOCATION_FAILURE';
 const GET_ATMS_SUCCESS = 'GET_ATMS_SUCCESS';
 const GET_ATMS_FAILURE = 'GET_ATMS_FAILURE';
 
-const fetchAtms = () => {
-  return axios.get('http://localhost:4567');
+const fetchAtms = (searchTerm = null) => {
+  return axios.get('http://localhost:4567', {
+    params: searchTerm
+  })
 }
 
 const atmsByBusId = (atms) => {
