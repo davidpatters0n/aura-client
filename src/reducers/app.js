@@ -15,7 +15,7 @@ const app = (state = {}, action) => {
 const isLoading = (state = true, action) => {
   switch (action.type) {
     case 'COMPLETED':
-      return !state;
+      return false
     default:
       return state;
   }
