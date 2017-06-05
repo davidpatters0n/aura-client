@@ -6,7 +6,8 @@ import * as actionCreators from '../actions/app';
 
 // Components
 import GoogleMap from './google-map';
-import SearchContainer from './search-container';
+import SearchForm from './search-form';
+import Spinner from './spinner';
 
 // Styles
 import './App.css';
@@ -24,22 +25,24 @@ class App extends Component {
   }
 
   render() {
-    let map = <div>Loading...</div>
+    let content = <Spinner />
     const { isLoading, atms, longitude, latitude } = this.props;
 
     if (!isLoading && longitude && latitude) {
-      map = <GoogleMap latitude={latitude} longitude={longitude} atms={atms}/>
+      content = [
+        <div className='col-md-6 google-map-container-map' key="google-map">
+          <GoogleMap latitude={latitude} longitude={longitude} atms={atms}/>
+        </div>,
+        <div className="col-md-6" key="search-form">
+          <SearchForm />
+        </div>
+      ]
     }
 
     return (
       <div className='google-map-container'>
         <div className='google-map-container__row row'>
-          <div className='col-md-6 google-map-container-map'>
-            {map}
-          </div>
-          <div className="col-md-6">
-            <SearchContainer onSearchUpdate={this.handleSearchUpdate} />
-          </div>
+          {content}
         </div>
       </div>
     );
