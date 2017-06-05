@@ -8,7 +8,7 @@ const GoogleMapClusters = withGoogleMap(props => (
   <GoogleMap
     ref={props.onMapLoad}
     defaultZoom={15}
-    center={{ lat: 51.509865, lng: -0.118092 }}
+    center={{ lat: props.latitude, lng: props.longitude }}
   >
     <MarkerClusterer
       averageCenter
