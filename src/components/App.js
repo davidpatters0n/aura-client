@@ -14,6 +14,7 @@ import './App.css';
 class App extends Component {
 
   componentDidMount() {
+    this.props.setLocation();
     this.props.loadAtms();
     this.handleSearchUpdate = this.handleSearchUpdate.bind(this)
   }

@@ -31,14 +31,6 @@ const getLocationFailure = (error) => {
   }
 }
 
-const setLocation = () => {
-  return (dispatch) => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => dispatch(getLocationSuccess(position))
-    , (error) => getLocationFailure());
-  }
-}
-
 const getAtmsSuccess = (atms) => {
   return {
     type: GET_ATMS_SUCCESS,
@@ -59,10 +51,22 @@ const recievedAtms = () => {
   }
 }
 
-export const loadAtms = () => {
+export const setLocation = (location = null) => {
   return (dispatch) => {
-    dispatch(setLocation());
-    return fetchAtms().then(
+    if (location) {
+      dispatch(getLocationSuccess(location));
+    }
+    else {
+      navigator.geolocation.getCurrentPosition(
+        (position) => dispatch(getLocationSuccess(position))
+      , (error) => getLocationFailure());
+    }
+  }
+}
+
+export const loadAtms = (searchTerm = null) => {
+  return (dispatch) => {
+    return fetchAtms(searchTerm).then(
       (response) => {
         let atms = atmsByBusId(response.data);
         dispatch(getAtmsSuccess(atms));
