@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import MarkerClusterer from 'react-google-maps/lib/addons/MarkerClusterer';
 
@@ -24,7 +24,6 @@ const GoogleMapClusters = withGoogleMap(props => (
     </MarkerClusterer>
   </GoogleMap>
 ));
-
 
 const GMap = (props) => {
   const { latitude, longitude, atms } = props;
