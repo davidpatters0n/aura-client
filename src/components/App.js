@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/app';
 
 // Components
+import AtmList from './atm-list';
 import GoogleMap from './google-map';
 import SearchForm from './search-form';
 import Spinner from './spinner';
@@ -35,6 +36,7 @@ class App extends Component {
         </div>,
         <div className="col-md-6" key="search-form">
           <SearchForm />
+          <AtmList />
         </div>
       ]
     }

@@ -15,7 +15,8 @@ const fetchAtms = (searchTerm = null) => {
 }
 
 const atmsByBusId = (atms) => {
-  return _.uniq(atms.map(atm => { return atm['location']}), 'ownerBusId');
+  return atms.map(atm => { return atm['location']})
+  // return _.uniq(atms.map(atm => { return atm['location']}), 'ownerBusId');
 }
 
 const getLocationSuccess = (position) => {
